@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#" routerLink="/home">
+        <fa-icon [icon]="faParagraph"></fa-icon>
+      Monitor de Recursos
+    </a>
+  
+    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" type="button"  id="sidebarCollapse" (click)="sidebarCollapse()">
+      <fa-icon [icon]="faBars"></fa-icon>
+    </button> 
+    <!-- Navbar -->
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ml-auto mr-md-0">
+        <li class="dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <fa-icon [icon]="faUserCircle"></fa-icon>
+            {{user.usuario}}
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#" routerLink="/"> 
+                <fa-icon [icon]="faUser"></fa-icon>
+              Perfil
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <fa-icon [icon]="faSignOutAlt"></fa-icon>
+              Cerrar sesión
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <!-- Scroll to Top Button-->
+    <button class="scroll-to-top rounded" type="button" (click)="goPageTop()">
+        <fa-icon [icon]="faAngleUp"></fa-icon>
+    </button>
+  </nav>
+  
+
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Cerrar Sesión</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Selecciona "Salir" si quieres cerrar sesión.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <button class="btn btn-primary" type="button" data-dismiss="modal" (click)="onLogout()">Salir</button>
+        </div>
+      </div>
+    </div>
+  </div>

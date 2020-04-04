@@ -1,0 +1,33 @@
+<!-- Sidebar -->
+<ul class="sidebar navbar-nav">
+    <li class="nav-item" [ngClass]="{'active': home == true}">
+        <a class="nav-link" id="link" href="#" routerLink="/home">
+            <fa-icon [icon]="faTachometerAlt" fixed="true"></fa-icon>
+            <span>Home</span>
+        </a>
+    </li>
+    <li class="nav-item" [ngClass]="{'active': ram == true}">
+        <a class="nav-link" id="link" href="#" routerLink="/ram">
+            <fa-icon [icon]="faTasks"></fa-icon>
+            <span>Ram</span>
+        </a>
+    </li>
+    <li class="nav-item" [ngClass]="{'active': cpu == true}">
+        <a class="nav-link" id="link" href="#" routerLink="/cpu">
+            <fa-icon [icon]="faTasks"></fa-icon>
+            <span>CPU</span>
+        </a>
+    </li>
+    <li class="nav-item" [ngClass]="{'active': procesos == true}">
+        <a class="nav-link" id="link" href="#" routerLink="/procesos">
+            <fa-icon [icon]="faTasks"></fa-icon>
+            <span>Procesos</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="sidebarCollapse2" (click)="sidebarCollapse2()">
+            <fa-icon id="collapse2-1" [icon]="faChevronCircleLeft" size="lg"></fa-icon>
+            <fa-icon id="collapse2-2" [icon]="faChevronCircleRight" size="lg"></fa-icon>
+        </a>
+    </li>
+</ul>
