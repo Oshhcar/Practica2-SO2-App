@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faTachometerAlt, faTasks, faChevronCircleLeft, faChevronCircleRight} from '@fortawesome/free-solid-svg-icons';
+import { faTachometerAlt, faTasks, faChevronCircleLeft, faChevronCircleRight, faChartArea, faChartPie} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sidebar',
@@ -19,6 +19,8 @@ export class SidebarComponent implements OnInit {
   faTasks = faTasks;
   faChevronCircleLeft = faChevronCircleLeft;
   faChevronCircleRight = faChevronCircleRight;
+  faChartArea = faChartArea;
+  faChartPie = faChartPie;
 
   home: boolean;
   ram: boolean;
@@ -27,7 +29,7 @@ export class SidebarComponent implements OnInit {
   toggled2: boolean;
 
   setActive(): void {
-    if(this.router.url.toString() == '/home'){
+    if(this.router.url.toString() == '/home' || this.router.url.toString() == '/'){
       this.home = true;
       //this.calendario = false;
     } else if(this.router.url.toString() == '/ram'){
