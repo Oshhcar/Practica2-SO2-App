@@ -31,7 +31,9 @@
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/jquery-easing/dist/jquery.easing.1.3.umd.min.js",
               "./node_modules/popper.js/dist/umd/popper.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "./node_modules/chart.js/dist/Chart.js",
+              "./node_modules/canvasjs/dist/canvasjs.js"
             ]
           },
           "configurations": {

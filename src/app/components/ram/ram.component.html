@@ -14,44 +14,73 @@
                 <li class="breadcrumb-item active">Ram</li>
             </ol>
 
+            <!-- Error -->
+            <div class="alert alert-danger" *ngIf="error">{{error}}</div>
+
+
             <div class="row justify-content-md-center">
                 <div class="col-xl-3 col-sm-6 mb-3 text-center">
                     <div class="card mb-4 shadow-sm">
                         <div class="card-header">
-                            <h4 class="my-0 font-weight-normal">Memoria total</h4>
+                            <h4 class="my-0 font-weight-normal">Ram total</h4>
                         </div>
                         <div class="card-body">
-                            <h1 class="card-title pricing-card-title">8416 <small class="text-muted">Mb</small></h1>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>10 users included</li>
-                                <li>2 GB of storage</li>
-                                <li>Email support</li>
-                                <li>Help center access</li>
-                            </ul>
-                            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for
-                                free</button>
+                            <h1 class="card-title pricing-card-title">{{ram.total}} <small class="text-muted">Mb</small>
+                            </h1>
                         </div>
+                        <div class="card-footer small text-muted">Updated today at {{chartTime | date:'mediumTime'}}</div>
                     </div>
                 </div>
 
                 <div class="col-xl-3 col-sm-6 mb-3 text-center">
                     <div class="card mb-4 shadow-sm">
                         <div class="card-header">
-                            <h4 class="my-0 font-weight-normal">Memoria consumida</h4>
+                            <h4 class="my-0 font-weight-normal">Ram usada</h4>
                         </div>
                         <div class="card-body">
-                            <h1 class="card-title pricing-card-title">$15 <small class="text-muted">Mb</small></h1>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>20 users included</li>
-                                <li>10 GB of storage</li>
-                                <li>Priority email support</li>
-                                <li>Help center access</li>
-                            </ul>
-                            <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
+                            <h1 class="card-title pricing-card-title">{{ram.consumida}} <small
+                                    class="text-muted">Mb</small></h1>
                         </div>
+                        <div class="card-footer small text-muted">Updated today at {{chartTime | date:'mediumTime'}}</div>
                     </div>
                 </div>
             </div>
+
+            <!-- Area Chart Example-->
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <fa-icon [icon]="faChartArea"></fa-icon>
+                            Poligono de Frecuencias
+                        </div>
+                        <div class="card-body">
+                            <div id="chartContainer"
+                                style="height: 370px; width: 100%; margin-left:auto;margin-right:auto;"></div>
+                        </div>
+                        <div class="card-footer small text-muted">Updated today at {{chartTime | date:'mediumTime'}}</div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <fa-icon [icon]="faChartPie"></fa-icon>
+                            Gráfico circular</div>
+                        <div class="card-body">
+                            <div id="chartContainer2" style="height: 370px; width: 100%; margin-left:auto;margin-right:auto;"></div>                        </div>
+                        <div class="card-footer small text-muted">Updated today at {{chartTime | date:'mediumTime'}}</div>
+                    </div>
+                </div>
+            </div>
+            <!--
+            <div class="card">
+                <canvas id="myChart" width="400" height="400"></canvas>
+                <div class="card-content">
+                 <h3>Realtime</h3>
+                 <p>Esta gráfica muestra información en tiempo real</p>
+                </div>
+               </div>
+               -->
 
         </div>
     </div>
