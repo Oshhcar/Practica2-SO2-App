@@ -1,0 +1,192 @@
+<app-navbar></app-navbar>
+
+<div id="wrapper">
+    <app-sidebar></app-sidebar>
+
+    <div id="content-wrapper">
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#" routerLink="/home">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">Procesos</li>
+            </ol>
+
+
+            <!-- Error -->
+            <div class="alert alert-danger" *ngIf="error">{{error}}</div>
+            <div class="alert alert-success" *ngIf="success">{{success}}</div>
+
+            <div class="row justify-content-md-center">
+                <div class="col-xl-3 col-sm-6 mb-3 text-center">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">Total</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">{{datos.total}}
+                            </h1>
+                        </div>
+                        <div class="card-footer small text-muted">Updated today at {{chartTime | date:'mediumTime'}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-sm-6 mb-3 text-center">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">Running</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">{{datos.ejecucion}}
+                            </h1>
+                        </div>
+                        <div class="card-footer small text-muted">Updated today at {{chartTime | date:'mediumTime'}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-3 text-center">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">Sleeping</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">{{datos.sleep}}
+                            </h1>
+                        </div>
+                        <div class="card-footer small text-muted">Updated today at {{chartTime | date:'mediumTime'}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-3 text-center">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">Stopped</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">{{datos.stop}}
+                            </h1>
+                        </div>
+                        <div class="card-footer small text-muted">Updated today at {{chartTime | date:'mediumTime'}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-3 text-center">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">Zombie</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">{{datos.zombie}}
+                            </h1>
+                        </div>
+                        <div class="card-footer small text-muted">Updated today at {{chartTime | date:'mediumTime'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DataTables Example -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <fa-icon [icon]="faTable"></fa-icon>
+                    Tabla de Procesos
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>PID</th>
+                                    <th>Usuario</th>
+                                    <th>Estado</th>
+                                    <th>Hijos</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>PID</th>
+                                    <th>Usuario</th>
+                                    <th>Estado</th>
+                                    <th>Hijos</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr *ngFor="let proc of datos.data">
+                                    <td>{{proc.nombre}}</td>
+                                    <td>{{proc.pid}}</td>
+                                    <td>{{proc.usuario}}</td>
+                                    <td>{{proc.estado}}</td>
+                                    <th class="text-center">
+                                        <a class="btn btn-primary btn-sm" href="#" (click)="onCargarHijos(proc.pid)" data-toggle="modal" data-target="#hijosModal">
+                                          Ver
+                                        </a>
+                                    </th>
+                                    <td class="text-center"><button class="btn btn-danger btn-sm" (click)="onDelete(proc.pid)">Kill
+                                            process</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer small text-muted">Updated today at {{chartTime | date:'mediumTime'}}</div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Logout Modal-->
+<div class="modal fade" id="hijosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Procesos hijos de: {{padre.nombre}}</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>PID</th>
+                            <th>Usuario</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>PID</th>
+                            <th>Usuario</th>
+                            <th>Estado</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr *ngFor="let h of padre.hijos">
+                            <td>{{h.nombre}}</td>
+                            <td>{{h.pid}}</td>
+                            <td>{{h.usuario}}</td>
+                            <td>{{h.estado}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>

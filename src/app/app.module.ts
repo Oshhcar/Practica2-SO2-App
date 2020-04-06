@@ -15,6 +15,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { Page404Component } from './components/page404/page404.component';
 import { RamComponent } from './components/ram/ram.component';
+import { ProcComponent } from './components/proc/proc.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { RamComponent } from './components/ram/ram.component';
     SidebarComponent,
     NavbarComponent,
     Page404Component,
-    RamComponent
+    RamComponent,
+    ProcComponent
   ],
   imports: [
     BrowserModule,
