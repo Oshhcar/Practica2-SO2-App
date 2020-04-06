@@ -25,6 +25,7 @@ export class DataService {
   ram: RamInterface;
   procesos: ProcInterface[];
   data: DataInterface;
+  cpu: RamInterface;
 
   getRam(): Observable<RamInterface>{
     return this.http.get(`${this.baseUrl}/ram/list.php`)
@@ -55,6 +56,15 @@ export class DataService {
     }), 
     catchError(this.handleError));
     return false;
+  }
+
+  getCPU(): Observable<RamInterface>{
+    return this.http.get(`${this.baseUrl}/ram/list.php`)
+    .pipe(map((cpu) =>{
+      this.cpu = cpu;
+      return this.cpu;
+    }),
+    catchError(this.handleError));
   }
 
 }

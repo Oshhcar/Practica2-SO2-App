@@ -15,16 +15,16 @@
             </ol>
 
             <!-- Icon Cards-->
-            <div class="row">
+            <div class="row justify-content-md-center">
                 <div class="col-xl-3 col-sm-6 mb-3">
                     <div class="card text-white bg-primary o-hidden h-100">
                         <div class="card-body">
                             <div class="card-body-icon">
                                 <fa-icon [icon]="faAws"></fa-icon>
                             </div>
-                            <div class="mr-5">26 Citas completadas!</div>
+                            <div class="mr-5">Consumo de memoria RAM!</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="#">
+                        <a class="card-footer text-white clearfix small z-1" href="#" routerLink="/ram">
                             <span class="float-left">Ver detalles</span>
                             <span class="float-right">
                                 <fa-icon [icon]="faAngleRight"></fa-icon>
@@ -38,9 +38,9 @@
                             <div class="card-body-icon">
                                 <fa-icon [icon]="faAws"></fa-icon>
                             </div>
-                            <div class="mr-5">11 Nuevas Citas!</div>
+                            <div class="mr-5">Uso del CPU!</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="#">
+                        <a class="card-footer text-white clearfix small z-1" href="#" routerLink="/cpu">
                             <span class="float-left">Ver Detalles</span>
                             <span class="float-right">
                                 <fa-icon [icon]="faAngleRight"></fa-icon>
@@ -54,25 +54,9 @@
                             <div class="card-body-icon">
                                 <fa-icon [icon]="faAws"></fa-icon>
                             </div>
-                            <div class="mr-5">12 Nuevos Pedidos!</div>
+                            <div class="mr-5">Lista de Procesos!</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="#">
-                            <span class="float-left">Ver Detalles</span>
-                            <span class="float-right">
-                                <fa-icon [icon]="faAngleRight"></fa-icon>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 mb-3">
-                    <div class="card text-white bg-danger o-hidden h-100">
-                        <div class="card-body">
-                            <div class="card-body-icon">
-                                <fa-icon [icon]="faAws"></fa-icon>
-                            </div>
-                            <div class="mr-5">13 Pendientes de Pago!</div>
-                        </div>
-                        <a class="card-footer text-white clearfix small z-1" href="#">
+                        <a class="card-footer text-white clearfix small z-1" href="#" routerLink="/procesos">
                             <span class="float-left">Ver Detalles</span>
                             <span class="float-right">
                                 <fa-icon [icon]="faAngleRight"></fa-icon>
@@ -81,18 +65,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Area Chart Example-->
-            <div class="card mb-3">
-                <div class="card-header">
-                    <i class="fas fa-chart-area"></i>
-                    Estadísticas</div>
-                <div class="card-body">
-                    <canvas id="myAreaChart" width="100%" height="30"></canvas>
-                </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-            </div>
-
         </div>
 
     </div>

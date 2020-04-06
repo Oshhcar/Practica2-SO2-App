@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data/data.service';
 import { Title } from '@angular/platform-browser';
 import { RamInterface } from 'src/app/models/ram.interface';
@@ -6,32 +6,30 @@ import * as CanvasJS from '../../../assets/canvasjs.min';
 import { faChartArea, faChartPie } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
-  selector: 'app-ram',
-  templateUrl: './ram.component.html',
-  styleUrls: ['./ram.component.css']
+  selector: 'app-cpu',
+  templateUrl: './cpu.component.html',
+  styleUrls: ['./cpu.component.css']
 })
-export class RamComponent implements OnInit {
+export class CpuComponent implements OnInit {
 
   private intervalUpdate: any = null;
   private chart: any = null;
-  private chart2: any = null;
   public chartTime: any;
+
 
   constructor(private dataService: DataService,
     private titlteService: Title) {
     document.body.id = "page-top";
     document.body.className = "bg-light";
-  }
+    }
 
   ngOnInit(): void {
-    this.titlteService.setTitle("Ram - Monitor de Recursos");
-    //this.getRam();
+    this.titlteService.setTitle("CPU - Monitor de Recursos");
     this.chartInit();
 
     this.intervalUpdate = setInterval(function () {
-      this.getRam();
+      this.getCPU();
     }.bind(this), 1000);
-
   }
 
   private ngOnDestroy(): void {
@@ -43,27 +41,26 @@ export class RamComponent implements OnInit {
 
   error = '';
 
-  ram: RamInterface = {
+  cpu: RamInterface = {
     total: 0,
     consumida: 0
   }
 
   dataPoints = [];
   cont = 0;
-  dataPoints2 = [];
 
   chartInit(): void {
     this.chart = new CanvasJS.Chart("chartContainer", {
       exportEnabled: true,
       zoomEnabled: true,
       title: {
-        text: "Consumo de memoria"
+        text: "Uso del CPU"
       },
       axisX: {
         title: "actualizada cada segundo"
       },
       axisY: {
-        suffix: " Mb"
+        suffix: " %"
       },
       toolTip: {
         shared: true
@@ -77,36 +74,20 @@ export class RamComponent implements OnInit {
       data: [{
         type: "spline",
         xValueType: "dateTime",
-        yValueFormatString: "#####",
+        yValueFormatString: "##",
         xValueFormatString: "hh:mm:ss TT",
         showInLegend: true,
         name: "usado",
         dataPoints: this.dataPoints,
       }]
     });
-
-    this.chart2 = new CanvasJS.Chart("chartContainer2", {
-      theme: "light",
-      animationEnabled: true,
-      exportEnabled: true,
-      title: {
-        text: "Porcenaje de uso"
-      },
-      data: [{
-        type: "pie",
-        showInLegend: true,
-        toolTipContent: "<b>{name}</b>: ${y} (#percent%)",
-        indexLabel: "{name} - #percent%",
-        dataPoints: this.dataPoints2
-      }]
-    });
   }
 
-  getRam(): void {
-    this.dataService.getRam()
+  getCPU(): void {
+    this.dataService.getCPU()
       .subscribe(
-        (ram: RamInterface) => {
-          this.ram = ram;
+        (cpu: RamInterface) => {
+          this.cpu = cpu;
 
           this.chartTime = new Date();
           /*
@@ -119,14 +100,11 @@ export class RamComponent implements OnInit {
             this.dataPoints.shift();
           }
 
-          this.dataPoints.push({ x: (new Date).getTime() + 1000, y: ram.consumida });
-          this.chart.options.data[0].legendText = " Usado " + ram.consumida + " Mb";
+          this.cpu.porcentaje = parseFloat(((cpu.consumida/cpu.total)*100).toFixed(2));
+
+          this.dataPoints.push({ x: (new Date).getTime() + 1000, y: this.cpu.porcentaje });
+          this.chart.options.data[0].legendText = " Usado " + this.cpu.porcentaje + " %";
           this.chart.render();
-
-          this.dataPoints2[0] = { y: ram.total-ram.consumida, name: "libre" };
-          this.dataPoints2[1] = { y: ram.consumida, name: "usada" };
-
-          this.chart2.render();
         },
         (error) => {
           this.error = error;
@@ -135,4 +113,5 @@ export class RamComponent implements OnInit {
         }
       );
   }
+
 }

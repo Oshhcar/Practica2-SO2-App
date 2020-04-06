@@ -1,0 +1,60 @@
+<app-navbar></app-navbar>
+
+<div id="wrapper">
+    <app-sidebar></app-sidebar>
+
+    <div id="content-wrapper">
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#" routerLink="/home">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">CPU</li>
+            </ol>
+
+            <!-- Error -->
+            <div class="alert alert-danger" *ngIf="error">{{error}}</div>
+
+            <!-- Area Chart Example-->
+            <div class="row justify-content-md-center">
+                <div class="col-lg-8">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <fa-icon [icon]="faChartArea"></fa-icon>
+                            Poligono de Frecuencias
+                        </div>
+                        <div class="card-body">
+                            <div id="chartContainer"
+                                style="height: 370px; width: 100%; margin-left:auto;margin-right:auto;"></div>
+                        </div>
+                        <div class="card-footer small text-muted">Updated today at {{chartTime | date:'mediumTime'}}</div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-sm-6 mb-3 text-center">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">Porcentaje de uso</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">{{cpu.porcentaje}} <small
+                                    class="text-muted">%</small></h1>
+                        </div>
+                        <div class="card-footer small text-muted">Updated today at {{chartTime | date:'mediumTime'}}</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="sticky-footer">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright © Monitor de Recursos 2020</span>
+            </div>
+        </div>
+    </footer>
+</div>
